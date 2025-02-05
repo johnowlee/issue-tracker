@@ -1,0 +1,9 @@
+### 프로젝트 생성
+POST localhost:8080/api/projects
+Content-Type: application/json
+
+{
+  "managerId": 1,
+  "title": "projectA",
+  "description": "this is projectA"
+}
