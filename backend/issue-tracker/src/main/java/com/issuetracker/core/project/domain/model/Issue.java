@@ -1,5 +1,6 @@
 package com.issuetracker.core.project.domain.model;
 
+import com.issuetracker.core.project.domain.service.dto.CreateIssueInfo;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -44,8 +45,22 @@ public class Issue {
         this.status = status;
     }
 
+    public static Issue create(CreateIssueInfo createIssueInfo) {
+        return Issue.builder()
+                .title(createIssueInfo.title())
+                .description(createIssueInfo.description())
+                .status(IssueStatus.IN_PROGRESS)
+                .startDateTime(createIssueInfo.startDateTime())
+                .endDateTime(createIssueInfo.endDateTime())
+                .build();
+    }
+
     public void setProject(Project project) {
         this.project = project;
         project.addIssue(this);
+    }
+
+    public void addAssignee(Assignee assignee) {
+        this.assignees.add(assignee);
     }
 }

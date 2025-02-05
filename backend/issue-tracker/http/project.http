@@ -7,3 +7,13 @@ Content-Type: application/json
   "title": "projectA",
   "description": "this is projectA"
 }
+
+### 이슈 생성
+POST localhost:8080/api/projects/1/issues
+Content-Type: application/json
+
+{
+  "title": "issueB",
+  "description": "this is issueB",
+  "assigneeIds": [1, 2]
+}
