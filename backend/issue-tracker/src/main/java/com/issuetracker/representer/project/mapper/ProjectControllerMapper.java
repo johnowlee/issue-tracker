@@ -57,6 +57,15 @@ public class ProjectControllerMapper {
                 toAssigneeResponses(issue.getAssignees()));
     }
 
+    public GetProjectResponse toGetProjectResponse(Project project) {
+        return new GetProjectResponse(
+                toProjectResponse(project),
+                project.getIssues().stream()
+                        .map(this::toGetIssueResponse)
+                        .toList()
+        );
+    }
+
     private static List<UserResponse> toAssigneeResponses(Set<IssueUser> issueUsers) {
         return issueUsers.stream()
                 .map(IssueUser::getUser)

@@ -8,6 +8,11 @@ Content-Type: application/json
   "description": "this is projectA"
 }
 
+### 프로젝트 조회
+GET localhost:8080/api/projects/1
+Content-Type: application/json
+
+
 ### 이슈 생성
 POST localhost:8080/api/projects/1/issues
 Content-Type: application/json
