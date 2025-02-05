@@ -1,7 +1,7 @@
 package com.issuetracker.core.project.domain.service;
 
-import com.issuetracker.core.project.domain.model.IssueUser;
 import com.issuetracker.core.project.domain.model.Issue;
+import com.issuetracker.core.project.domain.model.IssueUser;
 import com.issuetracker.core.project.domain.model.Project;
 import com.issuetracker.core.project.domain.port.ProjectCommandPort;
 import com.issuetracker.core.project.domain.service.dto.CreateIssueInfo;
@@ -35,7 +35,9 @@ public class ProjectCommandService {
         Issue issue = Issue.create(createIssueInfo);
         Set<User> users = getUsers(createIssueInfo.assigneeIds());
         Project project = projectQueryService.getProjectById(createIssueInfo.projectId());
-        setIssueRelations(issue, users, project);
+
+        setRelations(issue, users, project);
+        updateProjectPeriod(project);
         return projectCommandPort.saveIssue(issue);
     }
 
@@ -45,10 +47,17 @@ public class ProjectCommandService {
                 .collect(Collectors.toSet());
     }
 
-    private static void setIssueRelations(Issue issue, Set<User> users, Project project) {
-        for (User user : users) {
-            IssueUser.create(issue, user);
-        }
+    private static void setRelations(Issue issue, Set<User> users, Project project) {
+        users.forEach(user -> {
+            IssueUser issueUser = IssueUser.create();
+            issueUser.setIssue(issue);
+            issueUser.setUser(user);
+        });
         issue.setProject(project);
+    }
+
+    private void updateProjectPeriod(Project project) {
+        project.updateProjectPeriod();
+        projectCommandPort.saveProject(project);
     }
 }

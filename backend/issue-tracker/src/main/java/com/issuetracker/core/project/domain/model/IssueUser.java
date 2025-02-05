@@ -30,11 +30,8 @@ public class IssueUser {
         this.user = user;
     }
 
-    public static IssueUser create(Issue issue, User user) {
-        IssueUser issueUser = builder().build();
-        issueUser.setIssue(issue);
-        issueUser.setUser(user);
-        return issueUser;
+    public static IssueUser create() {
+        return builder().build();
     }
 
     public void setIssue(Issue issue) {

@@ -3,10 +3,7 @@ package com.issuetracker.core.project.domain.model;
 import com.issuetracker.core.project.domain.service.dto.CreateProjectInfo;
 import com.issuetracker.core.user.domain.model.User;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -29,19 +26,19 @@ public class Project {
 
     private String title;
     private String description;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Issue> issues = new HashSet<>();
 
     @Builder
-    public Project(Long id, String title, String description, LocalDateTime startDate, LocalDateTime endDate, Set<Issue> issues) {
+    public Project(Long id, String title, String description, LocalDateTime startDateTime, LocalDateTime endDateTime, Set<Issue> issues) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
         this.issues = issues;
     }
 
@@ -58,5 +55,17 @@ public class Project {
 
     protected void addIssue(Issue issue) {
         this.issues.add(issue);
+    }
+
+    public void updateProjectPeriod() {
+        this.startDateTime = issues.stream()
+                .map(Issue::getStartDateTime)
+                .min(LocalDateTime::compareTo)
+                .orElse(null);
+
+        this.endDateTime = issues.stream()
+                .map(Issue::getEndDateTime)
+                .max(LocalDateTime::compareTo)
+                .orElse(null);
     }
 }

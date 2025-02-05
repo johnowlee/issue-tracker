@@ -1,5 +1,6 @@
 package com.issuetracker.representer.project.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDateTime;
@@ -11,7 +12,11 @@ public record CreateIssueRequest(
         String title,
 
         String description,
+
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
         LocalDateTime startDateTime,
+
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
         LocalDateTime endDateTime,
         Set<Long> assigneeIds,
         Set<Long> labelIds) {

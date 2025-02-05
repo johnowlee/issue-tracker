@@ -4,5 +4,5 @@ import java.util.List;
 
 public record GetProjectResponse(
         ProjectResponse project,
-        List<GetIssueResponse> issues) {
+        List<GetIssueWithoutProjectResponse> issues) {
 }

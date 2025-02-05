@@ -39,8 +39,8 @@ public class ProjectController {
     }
 
     @PostMapping("/projects/{projectId}/issues")
-    public ResponseEntity<CreateIssueResponse> addIssue(@PathVariable long projectId,
-                                                        @RequestBody CreateIssueRequest request) {
+    public ResponseEntity<CreateIssueResponse> createIssue(@PathVariable long projectId,
+                                                           @RequestBody CreateIssueRequest request) {
         CreateIssueCommand createIssueCommand = mapper.toCreateIssueCommand(request, projectId);
         Issue issue = createIssueUseCase.execute(createIssueCommand);
         return  ResponseEntity.ok().body(mapper.toCreateIssueResponse(issue));

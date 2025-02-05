@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Component
 public class ProjectControllerMapper {
     public ProjectResponse toProjectResponse(Project project) {
-        return new ProjectResponse(project.getId(), project.getTitle(), project.getDescription(), project.getStartDate(), project.getEndDate());
+        return new ProjectResponse(project.getId(), project.getTitle(), project.getDescription(), project.getStartDateTime(), project.getEndDateTime());
     }
 
     public IssueResponse toIssueResponse(Issue issue) {

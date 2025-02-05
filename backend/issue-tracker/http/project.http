@@ -18,9 +18,11 @@ POST localhost:8080/api/projects/1/issues
 Content-Type: application/json
 
 {
-  "title": "issueA",
-  "description": "this is issueA",
-  "assigneeIds": [1, 2]
+  "title": "issueB",
+  "description": "this is issueB",
+  "assigneeIds": [1],
+  "startDateTime": "2025-02-05T12:30:00.000Z",
+  "endDateTime":  "2025-03-02T12:30:00.000Z"
 }
 
 ### 이슈 조회
