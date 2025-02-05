@@ -1,0 +1,13 @@
+### 회원가입
+POST localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "jd@gmail.com",
+  "password": 1234
+}
+
+### 회원조회
+GET localhost:8080/api/users/1
+Content-Type: application/json
