@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "assignee")
-@IdClass(AssigneeId.class)
-public class Assignee {
+@Table(name = "issue_user")
+@IdClass(IssueUserId.class)
+public class IssueUser {
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,16 +25,16 @@ public class Assignee {
     private User user;
 
     @Builder
-    public Assignee(Issue issue, User user) {
+    public IssueUser(Issue issue, User user) {
         this.issue = issue;
         this.user = user;
     }
 
-    public static Assignee create(Issue issue, User user) {
-        Assignee assignee = builder().build();
-        assignee.setIssue(issue);
-        assignee.setUser(user);
-        return assignee;
+    public static IssueUser create(Issue issue, User user) {
+        IssueUser issueUser = builder().build();
+        issueUser.setIssue(issue);
+        issueUser.setUser(user);
+        return issueUser;
     }
 
     public void setIssue(Issue issue) {

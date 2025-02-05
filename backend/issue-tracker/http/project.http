@@ -13,7 +13,11 @@ POST localhost:8080/api/projects/1/issues
 Content-Type: application/json
 
 {
-  "title": "issueB",
-  "description": "this is issueB",
+  "title": "issueA",
+  "description": "this is issueA",
   "assigneeIds": [1, 2]
 }
+
+### 이슈 조회
+GET localhost:8080/api/issues/1
+Content-Type: application/json

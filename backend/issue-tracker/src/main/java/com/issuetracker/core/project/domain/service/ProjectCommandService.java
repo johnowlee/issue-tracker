@@ -1,6 +1,6 @@
 package com.issuetracker.core.project.domain.service;
 
-import com.issuetracker.core.project.domain.model.Assignee;
+import com.issuetracker.core.project.domain.model.IssueUser;
 import com.issuetracker.core.project.domain.model.Issue;
 import com.issuetracker.core.project.domain.model.Project;
 import com.issuetracker.core.project.domain.port.ProjectCommandPort;
@@ -47,7 +47,7 @@ public class ProjectCommandService {
 
     private static void setIssueRelations(Issue issue, Set<User> users, Project project) {
         for (User user : users) {
-            Assignee.create(issue, user);
+            IssueUser.create(issue, user);
         }
         issue.setProject(project);
     }

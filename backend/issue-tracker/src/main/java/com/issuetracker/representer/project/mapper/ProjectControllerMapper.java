@@ -3,23 +3,35 @@ package com.issuetracker.representer.project.mapper;
 import com.issuetracker.application.project.data.command.CreateIssueCommand;
 import com.issuetracker.application.project.data.command.CreateProjectCommand;
 import com.issuetracker.core.project.domain.model.Issue;
+import com.issuetracker.core.project.domain.model.IssueUser;
 import com.issuetracker.core.project.domain.model.Project;
+import com.issuetracker.core.user.domain.model.User;
 import com.issuetracker.representer.project.dto.request.CreateIssueRequest;
 import com.issuetracker.representer.project.dto.request.CreateProjectRequest;
-import com.issuetracker.representer.project.dto.response.CreateIssueResponse;
-import com.issuetracker.representer.project.dto.response.CreateProjectResponse;
+import com.issuetracker.representer.project.dto.response.*;
+import com.issuetracker.representer.user.dto.response.UserResponse;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
 public class ProjectControllerMapper {
+    public ProjectResponse toProjectResponse(Project project) {
+        return new ProjectResponse(project.getId(), project.getTitle(), project.getDescription(), project.getStartDate(), project.getEndDate());
+    }
+
+    public IssueResponse toIssueResponse(Issue issue) {
+        return new IssueResponse(issue.getId(), issue.getTitle(), issue.getDescription(), issue.getStartDateTime(), issue.getEndDateTime(), issue.getStatus());
+    }
+
     public CreateProjectCommand toCreateProjectCommand(CreateProjectRequest request) {
         return new CreateProjectCommand(request.managerId(), request.title(), request.description());
     }
 
     public CreateProjectResponse toCreateProjectResponse(Project project) {
-        return new CreateProjectResponse(project.getId(), project.getManager().getId(), project.getTitle(), project.getDescription());
+        return new CreateProjectResponse(toProjectResponse(project));
     }
 
     public CreateIssueCommand toCreateIssueCommand(CreateIssueRequest request, long projectId) {
@@ -34,16 +46,25 @@ public class ProjectControllerMapper {
 
     public CreateIssueResponse toCreateIssueResponse(Issue issue) {
         return new CreateIssueResponse(
-                issue.getId(),
-                issue.getProject().getId(),
-                issue.getTitle(),
-                issue.getDescription(),
-                issue.getStartDateTime(),
-                issue.getEndDateTime(),
-                issue.getAssignees().stream()
-                        .map(assignee -> assignee.getUser().getId())
-                        .collect(Collectors.toSet()),
-                null
-        );
+                toIssueResponse(issue),
+                toAssigneeResponses(issue.getAssignees()));
+    }
+
+    public GetIssueResponse toGetIssueResponse(Issue issue) {
+        return new GetIssueResponse(
+                toIssueResponse(issue),
+                toProjectResponse(issue.getProject()),
+                toAssigneeResponses(issue.getAssignees()));
+    }
+
+    private static List<UserResponse> toAssigneeResponses(Set<IssueUser> issueUsers) {
+        return issueUsers.stream()
+                .map(IssueUser::getUser)
+                .map(ProjectControllerMapper::toUserResponse)
+                .collect(Collectors.toList());
+    }
+
+    private static UserResponse toUserResponse(User user) {
+        return new UserResponse(user.getId(), user.getName(), user.getEmail());
     }
 }

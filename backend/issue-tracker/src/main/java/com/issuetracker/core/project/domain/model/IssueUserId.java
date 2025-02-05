@@ -10,7 +10,7 @@ import java.util.Objects;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AssigneeId implements Serializable {
+public class IssueUserId implements Serializable {
 
     private Long issue;
     private Long user;
@@ -19,7 +19,7 @@ public class AssigneeId implements Serializable {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
-        AssigneeId that = (AssigneeId) object;
+        IssueUserId that = (IssueUserId) object;
         return Objects.equals(issue, that.issue) && Objects.equals(user, that.user);
     }
 

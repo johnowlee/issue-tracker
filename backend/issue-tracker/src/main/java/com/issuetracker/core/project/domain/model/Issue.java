@@ -33,7 +33,7 @@ public class Issue {
     private Project project;
 
     @OneToMany(mappedBy = "issue", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Assignee> assignees = new HashSet<>();
+    private Set<IssueUser> assignees = new HashSet<>();
 
     @Builder
     public Issue(Long id, String title, String description, LocalDateTime startDateTime, LocalDateTime endDateTime, IssueStatus status) {
@@ -60,7 +60,7 @@ public class Issue {
         project.addIssue(this);
     }
 
-    public void addAssignee(Assignee assignee) {
-        this.assignees.add(assignee);
+    public void addAssignee(IssueUser issueUser) {
+        this.assignees.add(issueUser);
     }
 }
