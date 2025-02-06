@@ -35,6 +35,9 @@ public class Issue {
     @OneToMany(mappedBy = "issue", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<IssueUser> assignees = new HashSet<>();
 
+    @OneToMany(mappedBy = "issue", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<IssueLabel> labels = new HashSet<>();
+
     @Builder
     public Issue(Long id, String title, String description, LocalDateTime startDateTime, LocalDateTime endDateTime, IssueStatus status) {
         this.id = id;
@@ -62,5 +65,9 @@ public class Issue {
 
     public void addAssignee(IssueUser issueUser) {
         this.assignees.add(issueUser);
+    }
+
+    public void addlabel(IssueLabel issueUser) {
+        this.labels.add(issueUser);
     }
 }

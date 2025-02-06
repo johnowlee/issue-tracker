@@ -18,13 +18,28 @@ POST localhost:8080/api/projects/1/issues
 Content-Type: application/json
 
 {
-  "title": "issueB",
-  "description": "this is issueB",
+  "title": "issueA",
+  "description": "this is issueA",
   "assigneeIds": [1],
-  "startDateTime": "2025-02-05T12:30:00.000Z",
-  "endDateTime":  "2025-03-02T12:30:00.000Z"
+  "labelIds": [1, 2],
+  "startDateTime": "2025-02-06T12:30:00.000Z",
+  "endDateTime":  "2025-03-03T12:30:00.000Z"
 }
 
 ### 이슈 조회
 GET localhost:8080/api/issues/1
+Content-Type: application/json
+
+
+
+### 라벨 생성
+POST localhost:8080/api/labels
+Content-Type: application/json
+
+{
+  "name": "issueB"
+}
+
+### 라벨 조회
+GET localhost:8080/api/labels
 Content-Type: application/json

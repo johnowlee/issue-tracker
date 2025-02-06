@@ -1,12 +1,15 @@
 package com.issuetracker.representer.project.mapper;
 
 import com.issuetracker.application.project.data.command.CreateIssueCommand;
+import com.issuetracker.application.project.data.command.CreateLabelCommand;
 import com.issuetracker.application.project.data.command.CreateProjectCommand;
 import com.issuetracker.core.project.domain.model.Issue;
 import com.issuetracker.core.project.domain.model.IssueUser;
+import com.issuetracker.core.project.domain.model.Label;
 import com.issuetracker.core.project.domain.model.Project;
 import com.issuetracker.core.user.domain.model.User;
 import com.issuetracker.representer.project.dto.request.CreateIssueRequest;
+import com.issuetracker.representer.project.dto.request.CreateLabelRequest;
 import com.issuetracker.representer.project.dto.request.CreateProjectRequest;
 import com.issuetracker.representer.project.dto.response.*;
 import com.issuetracker.representer.user.dto.response.UserResponse;
@@ -44,6 +47,10 @@ public class ProjectControllerMapper {
                 request.labelIds());
     }
 
+    public CreateLabelCommand toCreateLabelCommand(CreateLabelRequest request) {
+        return new CreateLabelCommand(request.name());
+    }
+
     public CreateIssueResponse toCreateIssueResponse(Issue issue) {
         return new CreateIssueResponse(
                 toIssueResponse(issue),
@@ -61,9 +68,24 @@ public class ProjectControllerMapper {
         return new GetProjectResponse(
                 toProjectResponse(project),
                 project.getIssues().stream()
-                        .map(this::toGetIssueResponse)
-                        .toList()
-        );
+                        .map(this::toGetIssueWithoutProjectResponse)
+                        .toList());
+    }
+
+    public LabelResponse toLabelResponse(Label label) {
+        return new LabelResponse(label.getId(), label.getName());
+    }
+
+    public List<LabelResponse> toLabelsResponse(List<Label> labels) {
+        return labels.stream()
+                .map(this::toLabelResponse)
+                .collect(Collectors.toList());
+    }
+
+    private GetIssueWithoutProjectResponse toGetIssueWithoutProjectResponse(Issue issue) {
+        return new GetIssueWithoutProjectResponse(
+                toIssueResponse(issue),
+                toAssigneeResponses(issue.getAssignees()));
     }
 
     private static List<UserResponse> toAssigneeResponses(Set<IssueUser> issueUsers) {
