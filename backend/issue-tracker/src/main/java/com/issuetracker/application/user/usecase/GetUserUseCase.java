@@ -1,6 +1,5 @@
 package com.issuetracker.application.user.usecase;
 
-import com.issuetracker.application.user.data.query.GetUserQuery;
 import com.issuetracker.core.user.domain.model.User;
 import com.issuetracker.core.user.domain.service.UserQueryService;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class GetUserUseCase {
 
     private final UserQueryService userQueryService;
-    public User execute(GetUserQuery getUserQuery) {
-        return userQueryService.getUserById(getUserQuery.id());
+    public User execute(long id) {
+        return userQueryService.getUserById(id);
     }
 }

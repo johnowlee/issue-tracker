@@ -1,9 +1,13 @@
 package com.issuetracker.core.project.domain.model;
 
+import com.issuetracker.core.issue.domain.model.Issue;
 import com.issuetracker.core.project.domain.service.dto.CreateProjectInfo;
 import com.issuetracker.core.user.domain.model.User;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -53,7 +57,7 @@ public class Project {
         this.manager = user;
     }
 
-    protected void addIssue(Issue issue) {
+    public void addIssue(Issue issue) {
         this.issues.add(issue);
     }
 

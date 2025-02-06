@@ -1,0 +1,17 @@
+### 이슈 생성
+POST localhost:8080/api/issues
+Content-Type: application/json
+
+{
+  "projectId": 1,
+  "title": "issueA",
+  "description": "this is issueA",
+  "assigneeIds": [1],
+  "labelIds": [1,2],
+  "startDateTime": "2025-02-06T12:30:00.000Z",
+  "endDateTime":  "2025-03-03T12:30:00.000Z"
+}
+
+### 이슈 조회
+GET localhost:8080/api/issues/1
+Content-Type: application/json

@@ -1,0 +1,23 @@
+### 라벨 생성
+POST localhost:8080/api/labels
+Content-Type: application/json
+
+{
+  "name": "labelB"
+}
+
+### 라벨 조회
+GET localhost:8080/api/labels
+Content-Type: application/json
+
+### 라벨 수정
+PATCH localhost:8080/api/labels/1
+Content-Type: application/json
+
+{
+  "name": "modified LabelName"
+}
+
+### 라벨 삭제
+DELETE localhost:8080/api/labels/2
+Content-Type: application/json
