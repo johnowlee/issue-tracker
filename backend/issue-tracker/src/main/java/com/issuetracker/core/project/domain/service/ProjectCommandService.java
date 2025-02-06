@@ -4,6 +4,7 @@ import com.issuetracker.core.project.domain.model.*;
 import com.issuetracker.core.project.domain.port.ProjectCommandPort;
 import com.issuetracker.core.project.domain.service.dto.CreateIssueInfo;
 import com.issuetracker.core.project.domain.service.dto.CreateProjectInfo;
+import com.issuetracker.core.project.domain.service.dto.ModifyLabelInfo;
 import com.issuetracker.core.user.domain.model.User;
 import com.issuetracker.core.user.domain.service.UserQueryService;
 import jakarta.persistence.EntityExistsException;
@@ -48,6 +49,17 @@ public class ProjectCommandService {
         }
         Label label = Label.create(labelName);
         return projectCommandPort.saveLabel(label);
+    }
+
+    public Label modifyLabel(ModifyLabelInfo modifyLabelInfo) {
+        Label label = projectQueryService.getLabelById(modifyLabelInfo.id());
+        label.changeName(modifyLabelInfo.name());
+        return projectCommandPort.saveLabel(label);
+    }
+
+    public void deleteLabel(long id) {
+        Label label = projectQueryService.getLabelById(id);
+        projectCommandPort.deleteLabel(label);
     }
 
     private Set<User> getUsers(Set<Long> assigneeIds) {

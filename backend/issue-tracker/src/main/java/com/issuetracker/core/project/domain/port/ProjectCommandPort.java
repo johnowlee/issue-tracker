@@ -10,4 +10,6 @@ public interface ProjectCommandPort {
     Issue saveIssue(Issue issue);
 
     Label saveLabel(Label label);
+
+    void deleteLabel(Label label);
 }

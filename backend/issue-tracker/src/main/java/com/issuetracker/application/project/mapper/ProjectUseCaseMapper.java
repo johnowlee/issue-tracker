@@ -2,8 +2,10 @@ package com.issuetracker.application.project.mapper;
 
 import com.issuetracker.application.project.data.command.CreateIssueCommand;
 import com.issuetracker.application.project.data.command.CreateProjectCommand;
+import com.issuetracker.application.project.data.command.ModifyLabelCommand;
 import com.issuetracker.core.project.domain.service.dto.CreateIssueInfo;
 import com.issuetracker.core.project.domain.service.dto.CreateProjectInfo;
+import com.issuetracker.core.project.domain.service.dto.ModifyLabelInfo;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,5 +24,9 @@ public class ProjectUseCaseMapper {
                 command.assigneeIds(),
                 command.labelIds()
         );
+    }
+
+    public ModifyLabelInfo toModifyLabelInfo(ModifyLabelCommand command) {
+        return new ModifyLabelInfo(command.id(), command.name());
     }
 }

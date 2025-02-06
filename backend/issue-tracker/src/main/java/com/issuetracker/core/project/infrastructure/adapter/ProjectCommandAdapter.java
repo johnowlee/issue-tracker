@@ -32,4 +32,9 @@ public class ProjectCommandAdapter implements ProjectCommandPort {
     public Label saveLabel(Label label) {
         return labelJpaRepository.save(label);
     }
+
+    @Override
+    public void deleteLabel(Label label) {
+        labelJpaRepository.delete(label);
+    }
 }

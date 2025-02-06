@@ -3,11 +3,13 @@ package com.issuetracker.representer.project.mapper;
 import com.issuetracker.application.project.data.command.CreateIssueCommand;
 import com.issuetracker.application.project.data.command.CreateLabelCommand;
 import com.issuetracker.application.project.data.command.CreateProjectCommand;
+import com.issuetracker.application.project.data.command.ModifyLabelCommand;
 import com.issuetracker.core.project.domain.model.*;
 import com.issuetracker.core.user.domain.model.User;
 import com.issuetracker.representer.project.dto.request.CreateIssueRequest;
 import com.issuetracker.representer.project.dto.request.CreateLabelRequest;
 import com.issuetracker.representer.project.dto.request.CreateProjectRequest;
+import com.issuetracker.representer.project.dto.request.ModifyLabelRequest;
 import com.issuetracker.representer.project.dto.response.*;
 import com.issuetracker.representer.user.dto.response.UserResponse;
 import org.springframework.stereotype.Component;
@@ -81,6 +83,10 @@ public class ProjectControllerMapper {
         return labels.stream()
                 .map(this::toLabelResponse)
                 .collect(Collectors.toList());
+    }
+
+    public ModifyLabelCommand toModifyLabelCommand(Long id, ModifyLabelRequest request) {
+        return new ModifyLabelCommand(id, request.name());
     }
 
     private GetIssueWithoutProjectResponse toGetIssueWithoutProjectResponse(Issue issue) {
