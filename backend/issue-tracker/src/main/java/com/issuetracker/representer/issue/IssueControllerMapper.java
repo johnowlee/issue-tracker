@@ -29,8 +29,8 @@ public class IssueControllerMapper extends CommonControllerMapper {
                 request.projectId(),
                 request.title(),
                 request.description(),
-                request.startDateTime(),
-                request.endDateTime(),
+                request.startDate(),
+                request.endDate(),
                 request.assigneeIds(),
                 request.labelIds()
         );

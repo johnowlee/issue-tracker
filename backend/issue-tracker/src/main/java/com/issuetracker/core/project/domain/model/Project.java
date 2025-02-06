@@ -9,7 +9,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,19 +30,19 @@ public class Project {
 
     private String title;
     private String description;
-    private LocalDateTime startDateTime;
-    private LocalDateTime endDateTime;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Issue> issues = new HashSet<>();
 
     @Builder
-    public Project(Long id, String title, String description, LocalDateTime startDateTime, LocalDateTime endDateTime, Set<Issue> issues) {
+    public Project(Long id, String title, String description, LocalDate startDate, LocalDate endDate, Set<Issue> issues) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.issues = issues;
     }
 
@@ -62,14 +62,14 @@ public class Project {
     }
 
     public void updateProjectPeriod() {
-        this.startDateTime = issues.stream()
-                .map(Issue::getStartDateTime)
-                .min(LocalDateTime::compareTo)
+        this.startDate = issues.stream()
+                .map(Issue::getStartDate)
+                .min(LocalDate::compareTo)
                 .orElse(null);
 
-        this.endDateTime = issues.stream()
-                .map(Issue::getEndDateTime)
-                .max(LocalDateTime::compareTo)
+        this.endDate = issues.stream()
+                .map(Issue::getEndDate)
+                .max(LocalDate::compareTo)
                 .orElse(null);
     }
 }

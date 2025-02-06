@@ -12,8 +12,8 @@ public class IssueUseCaseMapper {
                 command.projectId(),
                 command.title(),
                 command.description(),
-                command.startDateTime(),
-                command.endDateTime(),
+                command.startDate(),
+                command.endDate(),
                 command.assigneeIds(),
                 command.labelIds())
         ;

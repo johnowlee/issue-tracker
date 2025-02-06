@@ -8,7 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,8 +25,8 @@ public class Issue {
 
     private String title;
     private String description;
-    private LocalDateTime startDateTime;
-    private LocalDateTime endDateTime;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private IssueStatus status;
 
     @ManyToOne
@@ -40,12 +40,12 @@ public class Issue {
     private Set<IssueLabel> issueLabels = new HashSet<>();
 
     @Builder
-    public Issue(Long id, String title, String description, LocalDateTime startDateTime, LocalDateTime endDateTime, IssueStatus status) {
+    public Issue(Long id, String title, String description, LocalDate startDate, LocalDate endDate, IssueStatus status) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.startDateTime = startDateTime;
-        this.endDateTime = endDateTime;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.status = status;
     }
 
@@ -54,8 +54,8 @@ public class Issue {
                 .title(createIssueInfo.title())
                 .description(createIssueInfo.description())
                 .status(IssueStatus.IN_PROGRESS)
-                .startDateTime(createIssueInfo.startDateTime())
-                .endDateTime(createIssueInfo.endDateTime())
+                .startDate(createIssueInfo.startDate())
+                .endDate(createIssueInfo.endDate())
                 .build();
     }
 

@@ -18,11 +18,11 @@ import java.util.Set;
 public class CommonControllerMapper {
 
     public ProjectResponse toProjectResponse(Project project) {
-        return new ProjectResponse(project.getId(), project.getTitle(), project.getDescription(), project.getStartDateTime(), project.getEndDateTime());
+        return new ProjectResponse(project.getId(), project.getTitle(), project.getDescription(), project.getStartDate(), project.getEndDate());
     }
 
     public IssueResponse toIssueResponse(Issue issue) {
-        return new IssueResponse(issue.getId(), issue.getTitle(), issue.getDescription(), issue.getStartDateTime(), issue.getEndDateTime(), issue.getStatus());
+        return new IssueResponse(issue.getId(), issue.getTitle(), issue.getDescription(), issue.getStartDate(), issue.getEndDate(), issue.getStatus());
     }
 
     public IssueDetailResponse toIssueWithAllResponse(Issue issue) {

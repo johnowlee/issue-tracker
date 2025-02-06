@@ -1,10 +1,10 @@
 package com.issuetracker.representer.issue.dto.request;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public record ModifyIssueRequest(
         String title,
         String description,
-        LocalDateTime startDateTime,
-        LocalDateTime endDateTime) {
+        LocalDate startDate,
+        LocalDate endDate) {
 }
