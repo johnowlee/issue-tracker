@@ -3,10 +3,7 @@ package com.issuetracker.representer.project.mapper;
 import com.issuetracker.application.project.data.command.CreateIssueCommand;
 import com.issuetracker.application.project.data.command.CreateLabelCommand;
 import com.issuetracker.application.project.data.command.CreateProjectCommand;
-import com.issuetracker.core.project.domain.model.Issue;
-import com.issuetracker.core.project.domain.model.IssueUser;
-import com.issuetracker.core.project.domain.model.Label;
-import com.issuetracker.core.project.domain.model.Project;
+import com.issuetracker.core.project.domain.model.*;
 import com.issuetracker.core.user.domain.model.User;
 import com.issuetracker.representer.project.dto.request.CreateIssueRequest;
 import com.issuetracker.representer.project.dto.request.CreateLabelRequest;
@@ -61,7 +58,11 @@ public class ProjectControllerMapper {
         return new GetIssueResponse(
                 toIssueResponse(issue),
                 toProjectResponse(issue.getProject()),
-                toAssigneeResponses(issue.getAssignees()));
+                toAssigneeResponses(issue.getAssignees()),
+                issue.getLabels().stream()
+                        .map(IssueLabel::getLabel)
+                        .map(this::toLabelResponse)
+                        .collect(Collectors.toList()));
     }
 
     public GetProjectResponse toGetProjectResponse(Project project) {
