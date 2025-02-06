@@ -15,4 +15,6 @@ public interface ProjectQueryPort {
     List<Label> findAll();
 
     Optional<Label> findLabelById(long id);
+
+    Optional<Label> findLabelByName(String name);
 }

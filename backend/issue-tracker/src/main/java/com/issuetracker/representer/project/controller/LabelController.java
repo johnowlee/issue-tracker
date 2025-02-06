@@ -22,7 +22,7 @@ public class LabelController {
     private final ProjectControllerMapper mapper;
 
     @PostMapping("/labels")
-    public ResponseEntity<LabelResponse> getIssue(@RequestBody CreateLabelRequest request) {
+    public ResponseEntity<LabelResponse> createLabel(@RequestBody CreateLabelRequest request) {
         Label label = createLabelUseCase.execute(mapper.toCreateLabelCommand(request));
         return ResponseEntity.ok().body(mapper.toLabelResponse(label));
     }

@@ -40,4 +40,9 @@ public class ProjectQueryAdapter implements ProjectQueryPort {
     public Optional<Label> findLabelById(long id) {
         return labelJpaRepository.findById(id);
     }
+
+    @Override
+    public Optional<Label> findLabelByName(String name) {
+        return labelJpaRepository.findByName(name);
+    }
 }

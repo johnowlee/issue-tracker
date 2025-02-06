@@ -36,4 +36,8 @@ public class ProjectQueryService {
         return projectQueryPort.findLabelById(labelId)
                 .orElseThrow(NoSuchElementException::new);
     }
+
+    public boolean isLabelPresentByName(String labelName) {
+        return projectQueryPort.findLabelByName(labelName).isPresent();
+    }
 }

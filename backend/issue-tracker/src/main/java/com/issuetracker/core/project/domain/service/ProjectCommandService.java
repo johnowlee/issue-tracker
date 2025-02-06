@@ -6,6 +6,7 @@ import com.issuetracker.core.project.domain.service.dto.CreateIssueInfo;
 import com.issuetracker.core.project.domain.service.dto.CreateProjectInfo;
 import com.issuetracker.core.user.domain.model.User;
 import com.issuetracker.core.user.domain.service.UserQueryService;
+import jakarta.persistence.EntityExistsException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -40,7 +41,11 @@ public class ProjectCommandService {
         return projectCommandPort.saveIssue(issue);
     }
 
+    // TODO: 2025-02-06  예외처리
     public Label createLabel(String labelName) {
+        if (projectQueryService.isLabelPresentByName(labelName)) {
+            throw new EntityExistsException();
+        }
         Label label = Label.create(labelName);
         return projectCommandPort.saveLabel(label);
     }
