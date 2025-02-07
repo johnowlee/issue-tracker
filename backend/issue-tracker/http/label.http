@@ -3,7 +3,7 @@ POST localhost:8080/api/labels
 Content-Type: application/json
 
 {
-  "name": "labelB"
+  "name": "123456"
 }
 
 ### 라벨 조회

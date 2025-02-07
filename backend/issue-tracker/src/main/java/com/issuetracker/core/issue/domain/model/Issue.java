@@ -2,6 +2,7 @@ package com.issuetracker.core.issue.domain.model;
 
 import com.issuetracker.core.issue.domain.service.dto.CreateIssueInfo;
 import com.issuetracker.core.project.domain.model.Project;
+import io.micrometer.common.util.StringUtils;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -70,5 +71,33 @@ public class Issue {
 
     public void addLabel(IssueLabel issueUser) {
         this.issueLabels.add(issueUser);
+    }
+
+    // TODO: 2025-02-07  
+    public void updateTitle(String title) {
+        if (StringUtils.isBlank(title)) {
+            throw new IllegalArgumentException("제목은 필수입니다.");
+        }
+        this.title = title;
+    }
+
+    public void updateDescription(String description) {
+        this.description = description;
+    }
+
+    public void updateStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void updateEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    // TODO: 2025-02-07
+    public void changeStatus(IssueStatus status) {
+        if (status == null) {
+            throw new IllegalArgumentException("상태 값은 필수입니다.");
+        }
+        this.status = status;
     }
 }

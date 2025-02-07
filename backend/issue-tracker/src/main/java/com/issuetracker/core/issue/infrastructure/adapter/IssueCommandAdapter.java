@@ -13,7 +13,12 @@ public class IssueCommandAdapter implements IssueCommandPort {
     private final IssueJpaRepository issueJpaRepository;
 
     @Override
-    public Issue saveIssue(Issue issue) {
+    public Issue save(Issue issue) {
         return issueJpaRepository.save(issue);
+    }
+
+    @Override
+    public void delete(Issue issue) {
+        issueJpaRepository.delete(issue);
     }
 }

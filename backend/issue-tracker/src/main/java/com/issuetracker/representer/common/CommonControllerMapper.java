@@ -7,7 +7,7 @@ import com.issuetracker.core.label.domain.model.Label;
 import com.issuetracker.core.project.domain.model.Project;
 import com.issuetracker.core.user.domain.model.User;
 import com.issuetracker.representer.issue.dto.response.IssueResponse;
-import com.issuetracker.representer.issue.dto.response.IssueDetailResponse;
+import com.issuetracker.representer.issue.dto.response.IssueDetailWithoutProjectResponse;
 import com.issuetracker.representer.label.dto.response.LabelResponse;
 import com.issuetracker.representer.project.dto.response.ProjectResponse;
 import com.issuetracker.representer.user.dto.response.UserResponse;
@@ -25,8 +25,8 @@ public class CommonControllerMapper {
         return new IssueResponse(issue.getId(), issue.getTitle(), issue.getDescription(), issue.getStartDate(), issue.getEndDate(), issue.getStatus());
     }
 
-    public IssueDetailResponse toIssueWithAllResponse(Issue issue) {
-        return new IssueDetailResponse(
+    public IssueDetailWithoutProjectResponse toIssueDetailWithoutProjectResponse(Issue issue) {
+        return new IssueDetailWithoutProjectResponse(
                 toIssueResponse(issue),
                 toUserResponseList(issue.getAssignees()),
                 toLabelResponseList(issue.getIssueLabels())

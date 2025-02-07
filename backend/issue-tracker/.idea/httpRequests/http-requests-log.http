@@ -4,23 +4,38 @@ Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2025-02-06T193825.200.json
+<> 2025-02-08T003702.200.json
 
 ###
 
-GET http://localhost:8080/api/issues/1
+DELETE http://localhost:8080/api/issues/1
 Content-Type: application/json
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2025-02-06T193801.200.json
+<> 2025-02-08T003654.200.txt
+
+###
+
+PATCH http://localhost:8080/api/issues/1/assignees
+Content-Type: application/json
+Content-Length: 28
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "assigneeIds": [2,4,5]
+}
+
+<> 2025-02-08T003614.200.json
 
 ###
 
 POST http://localhost:8080/api/issues
 Content-Type: application/json
-Content-Length: 212
+Content-Length: 178
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
@@ -30,62 +45,12 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "title": "issueA",
   "description": "this is issueA",
   "assigneeIds": [1],
-  "labelIds": [1,2],
-  "startDateTime": "2025-02-06T12:30:00.000Z",
-  "endDateTime":  "2025-03-03T12:30:00.000Z"
+  "labelIds": [1,2,3],
+  "startDate": "2025-02-06",
+  "endDate":  "2025-03-03"
 }
 
-<> 2025-02-06T193754.200.json
-
-###
-
-GET http://localhost:8080/api/projects/1
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T193735.200.json
-
-###
-
-GET http://localhost:8080/api/labels
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T193728.200.json
-
-###
-
-POST http://localhost:8080/api/labels
-Content-Type: application/json
-Content-Length: 22
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "name": "labelB"
-}
-
-<> 2025-02-06T193724.200.json
-
-###
-
-POST http://localhost:8080/api/labels
-Content-Type: application/json
-Content-Length: 22
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "name": "labelA"
-}
-
-<> 2025-02-06T193721.200.json
+<> 2025-02-08T003558.200.json
 
 ###
 
@@ -102,24 +67,167 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "description": "this is projectA"
 }
 
-<> 2025-02-06T193715.200.json
+<> 2025-02-08T003548.200.json
+
+###
+
+POST http://localhost:8080/api/labels
+Content-Type: application/json
+Content-Length: 22
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "123456"
+}
+
+<> 2025-02-08T003543.200.json
+
+###
+
+POST http://localhost:8080/api/labels
+Content-Type: application/json
+Content-Length: 21
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "12345"
+}
+
+<> 2025-02-08T003542-1.200.json
+
+###
+
+POST http://localhost:8080/api/labels
+Content-Type: application/json
+Content-Length: 20
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "1234"
+}
+
+<> 2025-02-08T003542.200.json
+
+###
+
+POST http://localhost:8080/api/labels
+Content-Type: application/json
+Content-Length: 19
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "123"
+}
+
+<> 2025-02-08T003541.200.json
+
+###
+
+POST http://localhost:8080/api/labels
+Content-Type: application/json
+Content-Length: 18
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "12"
+}
+
+<> 2025-02-08T003539.200.json
 
 ###
 
 POST http://localhost:8080/api/users
 Content-Type: application/json
-Content-Length: 72
+Content-Length: 79
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
   "name": "John Doe",
-  "email": "jda@gmail.com",
+  "email": "jdadqxzcaa@gmail.com",
   "password": 1234
 }
 
-<> 2025-02-06T193709.200.json
+<> 2025-02-08T003525.200.json
+
+###
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+Content-Length: 78
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "John Doe",
+  "email": "jdadqxzaa@gmail.com",
+  "password": 1234
+}
+
+<> 2025-02-08T003524.200.json
+
+###
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+Content-Length: 77
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "John Doe",
+  "email": "jdadqxaa@gmail.com",
+  "password": 1234
+}
+
+<> 2025-02-08T003523-1.200.json
+
+###
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+Content-Length: 76
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "John Doe",
+  "email": "jdadqaa@gmail.com",
+  "password": 1234
+}
+
+<> 2025-02-08T003523.200.json
+
+###
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+Content-Length: 75
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "John Doe",
+  "email": "jdadaa@gmail.com",
+  "password": 1234
+}
+
+<> 2025-02-08T001855.200.json
 
 ###
 
@@ -129,27 +237,22 @@ Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2025-02-06T190350.200.json
+<> 2025-02-08T000122.200.json
 
 ###
 
-GET http://localhost:8080/api/issues/1
+PATCH http://localhost:8080/api/issues/1/assignees
 Content-Type: application/json
+Content-Length: 23
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2025-02-06T190343.200.json
+{
+  "assigneeIds": []
+}
 
-###
-
-GET http://localhost:8080/api/issues/1
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T190042.200.json
+<> 2025-02-08T000120.200.json
 
 ###
 
@@ -159,202 +262,98 @@ Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2025-02-06T190016.200.json
+<> 2025-02-08T000111.200.json
 
 ###
 
-GET http://localhost:8080/api/issues/1
+PATCH http://localhost:8080/api/issues/1/assignees
 Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T190007.200.json
-
-###
-
-GET http://localhost:8080/api/issues/1
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T185950.200.json
-
-###
-
-GET http://localhost:8080/api/issues/1
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T185940.200.json
-
-###
-
-POST http://localhost:8080/api/projects/1/issues
-Content-Type: application/json
-Content-Length: 194
+Content-Length: 28
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
+  "assigneeIds": [1,2,3]
+}
+
+<> 2025-02-08T000105.200.json
+
+###
+
+GET http://localhost:8080/api/projects/1
+Content-Type: application/json
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2025-02-08T000049.200.json
+
+###
+
+POST http://localhost:8080/api/issues
+Content-Type: application/json
+Content-Length: 178
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "projectId": 1,
   "title": "issueA",
   "description": "this is issueA",
   "assigneeIds": [1],
-  "labelIds": [1,3],
-  "startDateTime": "2025-02-06T12:30:00.000Z",
-  "endDateTime":  "2025-03-03T12:30:00.000Z"
+  "labelIds": [1,2,3],
+  "startDate": "2025-02-06",
+  "endDate":  "2025-03-03"
 }
 
-<> 2025-02-06T185927.200.json
-
-###
-
-GET http://localhost:8080/api/issues/1
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T185916.500.json
-
-###
-
-POST http://localhost:8080/api/projects/1/issues
-Content-Type: application/json
-Content-Length: 192
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "issueA",
-  "description": "this is issueA",
-  "assigneeIds": [1],
-  "labelIds": [4],
-  "startDateTime": "2025-02-06T12:30:00.000Z",
-  "endDateTime":  "2025-03-03T12:30:00.000Z"
-}
-
-<> 2025-02-06T185913.500.json
-
-###
-
-GET http://localhost:8080/api/issues/1
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T185911.500.json
-
-###
-
-GET http://localhost:8080/api/labels
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T185900.200.json
+<> 2025-02-08T000000.200.json
 
 ###
 
 POST http://localhost:8080/api/labels
 Content-Type: application/json
-Content-Length: 22
+Content-Length: 18
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
-  "name": "labelA"
+  "name": "12"
 }
 
-<> 2025-02-06T185856.200.json
-
-###
-
-DELETE http://localhost:8080/api/labels/2
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T185852.200.txt
-
-###
-
-GET http://localhost:8080/api/labels
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T185848.200.json
-
-###
-
-PATCH http://localhost:8080/api/labels/1
-Content-Type: application/json
-Content-Length: 34
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "name": "modified LabelName"
-}
-
-<> 2025-02-06T185842.200.json
+<> 2025-02-07T235953.200.json
 
 ###
 
 POST http://localhost:8080/api/labels
 Content-Type: application/json
-Content-Length: 22
+Content-Length: 17
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
-  "name": "labelA"
+  "name": "1"
 }
 
-<> 2025-02-06T185833.200.json
+<> 2025-02-07T235952.200.json
 
 ###
 
 POST http://localhost:8080/api/labels
 Content-Type: application/json
-Content-Length: 22
+Content-Length: 21
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
-  "name": "labelD"
+  "name": "12345"
 }
 
-<> 2025-02-06T185829.500.json
-
-###
-
-POST http://localhost:8080/api/labels
-Content-Type: application/json
-Content-Length: 22
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "name": "labelD"
-}
-
-<> 2025-02-06T185825.200.json
+<> 2025-02-07T235949.200.json
 
 ###
 
@@ -371,17 +370,58 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "description": "this is projectA"
 }
 
-<> 2025-02-06T185821.200.json
+<> 2025-02-07T235943.200.json
 
 ###
 
-GET http://localhost:8080/api/users/1
+POST http://localhost:8080/api/users
 Content-Type: application/json
+Content-Length: 75
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
-<> 2025-02-06T185817.200.json
+{
+  "name": "John Doe",
+  "email": "jdadaa@gmail.com",
+  "password": 1234
+}
+
+<> 2025-02-07T235940.200.json
+
+###
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+Content-Length: 74
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "John Doe",
+  "email": "jdada@gmail.com",
+  "password": 1234
+}
+
+<> 2025-02-07T235938.200.json
+
+###
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+Content-Length: 73
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "John Doe",
+  "email": "jdaa@gmail.com",
+  "password": 1234
+}
+
+<> 2025-02-07T235937.200.json
 
 ###
 
@@ -398,167 +438,118 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "password": 1234
 }
 
-<> 2025-02-06T185815.200.json
+<> 2025-02-07T235932.200.json
 
 ###
 
-DELETE http://localhost:8080/api/labels/2
+PATCH http://localhost:8080/api/issues/1/labels
 Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T152253.200.txt
-
-###
-
-GET http://localhost:8080/api/projects/1
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T152201.200.json
-
-###
-
-GET http://localhost:8080/api/issues/1
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T152149.200.json
-
-###
-
-POST http://localhost:8080/api/projects/1/issues
-Content-Type: application/json
-Content-Length: 192
+Content-Length: 27
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
+  "labelIds": [1,2,4,5]
+}
+
+<> 2025-02-07T193800.200.json
+
+###
+
+POST http://localhost:8080/api/issues
+Content-Type: application/json
+Content-Length: 178
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "projectId": 1,
   "title": "issueA",
   "description": "this is issueA",
   "assigneeIds": [1],
-  "labelIds": [4],
-  "startDateTime": "2025-02-06T12:30:00.000Z",
-  "endDateTime":  "2025-03-03T12:30:00.000Z"
+  "labelIds": [1,2,3],
+  "startDate": "2025-02-06",
+  "endDate":  "2025-03-03"
 }
 
-<> 2025-02-06T152142.200.json
-
-###
-
-POST http://localhost:8080/api/projects/1/issues
-Content-Type: application/json
-Content-Length: 192
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "issueA",
-  "description": "this is issueA",
-  "assigneeIds": [1],
-  "labelIds": [2],
-  "startDateTime": "2025-02-06T12:30:00.000Z",
-  "endDateTime":  "2025-03-03T12:30:00.000Z"
-}
-
-<> 2025-02-06T152139.200.json
-
-###
-
-POST http://localhost:8080/api/projects/1/issues
-Content-Type: application/json
-Content-Length: 195
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "title": "issueA",
-  "description": "this is issueA",
-  "assigneeIds": [1],
-  "labelIds": [2, 3],
-  "startDateTime": "2025-02-06T12:30:00.000Z",
-  "endDateTime":  "2025-03-03T12:30:00.000Z"
-}
-
-<> 2025-02-06T152132.200.json
-
-###
-
-GET http://localhost:8080/api/labels
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T152117.200.json
+<> 2025-02-07T193758.200.json
 
 ###
 
 POST http://localhost:8080/api/labels
 Content-Type: application/json
-Content-Length: 22
+Content-Length: 21
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
-  "name": "labelD"
+  "name": "12345"
 }
 
-<> 2025-02-06T152115.200.json
+<> 2025-02-07T193756.200.json
 
 ###
 
 POST http://localhost:8080/api/labels
 Content-Type: application/json
-Content-Length: 22
+Content-Length: 20
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
-  "name": "labelC"
+  "name": "1234"
 }
 
-<> 2025-02-06T152112.200.json
+<> 2025-02-07T193755.200.json
 
 ###
 
 POST http://localhost:8080/api/labels
 Content-Type: application/json
-Content-Length: 22
+Content-Length: 19
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
-  "name": "labelB"
+  "name": "123"
 }
 
-<> 2025-02-06T152107.500.json
+<> 2025-02-07T193754-1.200.json
 
 ###
 
 POST http://localhost:8080/api/labels
 Content-Type: application/json
-Content-Length: 22
+Content-Length: 18
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
-  "name": "labelB"
+  "name": "12"
 }
 
-<> 2025-02-06T152105.500.json
+<> 2025-02-07T193754.200.json
+
+###
+
+POST http://localhost:8080/api/labels
+Content-Type: application/json
+Content-Length: 17
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "1"
+}
+
+<> 2025-02-07T193753.200.json
 
 ###
 
@@ -575,7 +566,7 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "description": "this is projectA"
 }
 
-<> 2025-02-06T152052.200.json
+<> 2025-02-07T193749.200.json
 
 ###
 
@@ -592,77 +583,197 @@ Accept-Encoding: br,deflate,gzip,x-gzip
   "password": 1234
 }
 
-<> 2025-02-06T152050.200.json
+<> 2025-02-07T193748.200.json
 
 ###
 
-GET http://localhost:8080/api/labels
+PATCH http://localhost:8080/api/issues/1/labels
 Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T152039.200.json
-
-###
-
-DELETE http://localhost:8080/api/labels/1
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T152036.200.txt
-
-###
-
-GET http://localhost:8080/api/labels
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T152033.200.json
-
-###
-
-PATCH http://localhost:8080/api/labels/1
-Content-Type: application/json
-Content-Length: 34
+Content-Length: 27
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
-  "name": "modified LabelName"
+  "labelIds": [1,2,4,5]
 }
 
-<> 2025-02-06T152026.200.json
+<> 2025-02-07T193515.500.json
 
 ###
 
-GET http://localhost:8080/api/labels
+POST http://localhost:8080/api/issues
 Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-06T152023.200.json
-
-###
-
-PATCH http://localhost:8080/api/labels/1
-Content-Type: application/json
-Content-Length: 34
+Content-Length: 178
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 {
-  "name": "modified LabelName"
+  "projectId": 1,
+  "title": "issueA",
+  "description": "this is issueA",
+  "assigneeIds": [1],
+  "labelIds": [1,2,3],
+  "startDate": "2025-02-06",
+  "endDate":  "2025-03-03"
 }
 
-<> 2025-02-06T152020.200.json
+<> 2025-02-07T193504.200.json
+
+###
+
+POST http://localhost:8080/api/labels
+Content-Type: application/json
+Content-Length: 21
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "12345"
+}
+
+<> 2025-02-07T193502.200.json
+
+###
+
+POST http://localhost:8080/api/labels
+Content-Type: application/json
+Content-Length: 20
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "1234"
+}
+
+<> 2025-02-07T193501.200.json
+
+###
+
+POST http://localhost:8080/api/labels
+Content-Type: application/json
+Content-Length: 19
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "123"
+}
+
+<> 2025-02-07T193500.200.json
+
+###
+
+POST http://localhost:8080/api/labels
+Content-Type: application/json
+Content-Length: 18
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "12"
+}
+
+<> 2025-02-07T193459.200.json
+
+###
+
+POST http://localhost:8080/api/labels
+Content-Type: application/json
+Content-Length: 17
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "1"
+}
+
+<> 2025-02-07T193458.200.json
+
+###
+
+POST http://localhost:8080/api/projects
+Content-Type: application/json
+Content-Length: 80
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "managerId": 1,
+  "title": "projectA",
+  "description": "this is projectA"
+}
+
+<> 2025-02-07T193453.200.json
+
+###
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+Content-Length: 72
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "John Doe",
+  "email": "jda@gmail.com",
+  "password": 1234
+}
+
+<> 2025-02-07T193451.200.json
+
+###
+
+PATCH http://localhost:8080/api/issues/1/labels
+Content-Type: application/json
+Content-Length: 27
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "labelIds": [1,2,4,5]
+}
+
+<> 2025-02-07T192003.200.json
+
+###
+
+PATCH http://localhost:8080/api/issues/1/labels
+Content-Type: application/json
+Content-Length: 29
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "labelIds": [1,2,3,4,5]
+}
+
+<> 2025-02-07T191956.200.json
+
+###
+
+PATCH http://localhost:8080/api/issues/1/labels
+Content-Type: application/json
+Content-Length: 20
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "labelIds": []
+}
+
+<> 2025-02-07T191950.200.json
 
 ###
 

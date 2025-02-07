@@ -1,11 +1,6 @@
 package com.issuetracker.application.issue.data.command;
 
-import java.time.LocalDate;
+import com.issuetracker.core.issue.domain.model.IssueStatus;
 
-public record ModifyIssueCommand(
-        Long id,
-        String title,
-        String description,
-        LocalDate startDate,
-        LocalDate endDate) {
+public record ChangeIssueStatusCommand(long id, IssueStatus status) {
 }

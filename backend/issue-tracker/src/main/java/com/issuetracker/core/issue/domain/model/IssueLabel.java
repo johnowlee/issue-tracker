@@ -42,4 +42,9 @@ public class IssueLabel {
     public void setLabel(Label label) {
         this.label = label;
     }
+
+    public void unsetIssue() {
+        this.issue.getIssueLabels().remove(this);
+        this.issue = null;
+    }
 }

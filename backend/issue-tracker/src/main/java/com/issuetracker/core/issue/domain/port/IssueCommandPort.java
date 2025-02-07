@@ -4,5 +4,7 @@ import com.issuetracker.core.issue.domain.model.Issue;
 
 public interface IssueCommandPort {
 
-    Issue saveIssue(Issue issue);
+    Issue save(Issue issue);
+
+    void delete(Issue issue);
 }

@@ -7,11 +7,50 @@ Content-Type: application/json
   "title": "issueA",
   "description": "this is issueA",
   "assigneeIds": [1],
-  "labelIds": [1],
+  "labelIds": [1,2,3],
   "startDate": "2025-02-06",
   "endDate":  "2025-03-03"
 }
 
 ### 이슈 조회
 GET localhost:8080/api/issues/1
+Content-Type: application/json
+
+### 이슈 수정
+PATCH localhost:8080/api/issues/1
+Content-Type: application/json
+
+{
+  "title": "modified Issue title",
+  "description": "modified Issue description",
+  "startDate": "2030-01-01",
+  "endDate":  "2030-12-31"
+}
+
+### 이슈 상태 수정
+PATCH localhost:8080/api/issues/1/status
+Content-Type: application/json
+
+{
+  "status": "DONE"
+}
+
+### 이슈 라벨 수정
+PATCH localhost:8080/api/issues/1/labels
+Content-Type: application/json
+
+{
+  "labelIds": [1,2,4,5]
+}
+
+### 이슈 담당자 수정
+PATCH localhost:8080/api/issues/1/assignees
+Content-Type: application/json
+
+{
+  "assigneeIds": [2,4,5]
+}
+
+### 이슈 삭제
+DELETE localhost:8080/api/issues/1
 Content-Type: application/json

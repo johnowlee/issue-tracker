@@ -6,7 +6,7 @@ import com.issuetracker.representer.user.dto.response.UserResponse;
 
 import java.util.List;
 
-public record GetIssueResponse(
+public record IssueDetailResponse(
         IssueResponse issue,
         ProjectResponse project,
         List<UserResponse> assignees,

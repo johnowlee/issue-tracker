@@ -1,2 +1,6 @@
-package com.issuetracker.representer.issue.dto.request;public record ModifyLabelsRequest() {
+package com.issuetracker.representer.issue.dto.request;
+
+import java.util.Set;
+
+public record ModifyIssueLabelsRequest(Set<Long> labelIds) {
 }

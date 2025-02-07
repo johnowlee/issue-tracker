@@ -1,10 +1,8 @@
 package com.issuetracker.core.issue.domain.service;
 
 import com.issuetracker.core.issue.domain.model.Issue;
-import com.issuetracker.core.issue.domain.model.IssueLabel;
-import com.issuetracker.core.issue.domain.model.IssueUser;
 import com.issuetracker.core.issue.domain.port.IssueCommandPort;
-import com.issuetracker.core.issue.domain.service.dto.CreateIssueInfo;
+import com.issuetracker.core.issue.domain.service.dto.*;
 import com.issuetracker.core.label.domain.model.Label;
 import com.issuetracker.core.label.domain.service.LabelQueryService;
 import com.issuetracker.core.project.domain.model.Project;
@@ -24,22 +22,68 @@ import java.util.stream.Collectors;
 public class IssueCommandService {
 
     private final IssueCommandPort issueCommandPort;
+    private final IssueQueryService issueQueryService;
     private final ProjectQueryService projectQueryService;
     private final LabelQueryService labelQueryService;
     private final UserQueryService userQueryService;
 
-    public Issue createIssue(CreateIssueInfo createIssueInfo) {
-        Issue issue = Issue.create(createIssueInfo);
-        Set<User> users = getUsers(createIssueInfo.assigneeIds());
-        Set<Label> labels = getLabels(createIssueInfo.labelIds());
-        Project project = projectQueryService.getProjectById(createIssueInfo.projectId());
+    private final IssueRelationManager issueRelationManager;
 
-        setRelations(issue, users, labels, project);
+    public Issue create(CreateIssueInfo info) {
+        Issue issue = Issue.create(info);
+        Set<User> users = getUsers(info.assigneeIds());
+        Set<Label> labels = getLabels(info.labelIds());
+        Project project = projectQueryService.getProjectById(info.projectId());
 
-        return issueCommandPort.saveIssue(issue);
+        issueRelationManager.relateIssueUsers(issue, users);
+        issueRelationManager.relateIssueLabels(issue, labels);
+        issueRelationManager.relateIssueProject(issue, project);
+
+        return issueCommandPort.save(issue);
     }
 
-    // TODO: 2025-02-06  예외처리
+    public Issue modify(ModifyIssueInfo info) {
+        Issue issue = issueQueryService.getIssueById(info.id());
+        issue.updateTitle(info.title());
+        issue.updateDescription(info.description());
+        issue.updateStartDate(info.startDate());
+        issue.updateEndDate(info.endDate());
+
+        Project project = projectQueryService.getProjectById(issue.getProject().getId());
+        issueRelationManager.relateIssueProject(issue, project);
+
+        return issue;
+    }
+
+    public void delete(long id) {
+        Issue issue = issueQueryService.getIssueById(id);
+        issueCommandPort.delete(issue);
+    }
+
+    public Issue changeStatus(ChangeIssueStatusInfo info) {
+        Issue issue = issueQueryService.getIssueById(info.id());
+        issue.changeStatus(info.status());
+        return issue;
+    }
+
+    public Issue modifyLabels(ModifyIssueLabelsInfo info) {
+        Issue issue = issueQueryService.getIssueById(info.id());
+        Set<Label> labels = getLabels(info.labelIds());
+
+        issueRelationManager.updateIssueLabelRelations(issue, labels);
+
+        return issue;
+    }
+
+    public Issue modifyAssignees(ModifyIssueAssigneesInfo info) {
+        Issue issue = issueQueryService.getIssueById(info.id());
+        Set<User> assignees = getUsers(info.assigneeIds());
+
+        issueRelationManager.updateIssueUserRelations(issue, assignees);
+
+        return issue;
+    }
+
     private Set<User> getUsers(Set<Long> assigneeIds) {
         return assigneeIds.stream()
                 .map(userQueryService::getUserById)
@@ -50,22 +94,5 @@ public class IssueCommandService {
         return labelIds.stream()
                 .map(labelQueryService::getLabelById)
                 .collect(Collectors.toSet());
-    }
-
-    private static void setRelations(Issue issue, Set<User> users, Set<Label> labels, Project project) {
-        users.forEach(user -> {
-            IssueUser issueUser = IssueUser.create();
-            issueUser.setIssue(issue);
-            issueUser.setUser(user);
-        });
-
-        labels.forEach(label -> {
-            IssueLabel issueLabel = IssueLabel.create();
-            issueLabel.setIssue(issue);
-            issueLabel.setLabel(label);
-        });
-
-        issue.setProject(project);
-        project.updateProjectPeriod();
     }
 }

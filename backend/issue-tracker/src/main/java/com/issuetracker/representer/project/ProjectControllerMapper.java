@@ -23,7 +23,7 @@ public class ProjectControllerMapper extends CommonControllerMapper {
         return new GetProjectResponse(
                 toProjectResponse(project),
                 project.getIssues().stream()
-                        .map(this::toIssueWithAllResponse)
+                        .map(this::toIssueDetailWithoutProjectResponse)
                         .toList()
         );
     }

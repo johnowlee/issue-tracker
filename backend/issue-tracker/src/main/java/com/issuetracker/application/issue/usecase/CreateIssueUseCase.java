@@ -17,6 +17,6 @@ public class CreateIssueUseCase {
     private final IssueUseCaseMapper mapper;
 
     public Issue execute(CreateIssueCommand command) {
-        return issueCommandService.createIssue(mapper.toCreateIssueInfo(command));
+        return issueCommandService.create(mapper.toCreateIssueInfo(command));
     }
 }

@@ -42,4 +42,9 @@ public class IssueUser {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public void unsetIssue() {
+        this.issue.getAssignees().remove(this);
+        this.issue = null;
+    }
 }

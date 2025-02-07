@@ -1,14 +1,7 @@
 package com.issuetracker.representer.issue.dto.request;
 
+import com.issuetracker.core.issue.domain.model.IssueStatus;
 import jakarta.validation.constraints.NotBlank;
 
-import java.time.LocalDate;
-
-public record ModifyIssueRequest(
-
-        @NotBlank
-        String title,
-        String description,
-        LocalDate startDate,
-        LocalDate endDate) {
+public record ChangeIssueStatusRequest(@NotBlank IssueStatus status) {
 }

@@ -1,19 +1,20 @@
 package com.issuetracker.representer.issue;
 
 import com.issuetracker.application.issue.data.command.CreateIssueCommand;
+import com.issuetracker.application.issue.data.command.ModifyIssueCommand;
 import com.issuetracker.core.issue.domain.model.Issue;
 import com.issuetracker.core.issue.domain.model.IssueLabel;
 import com.issuetracker.representer.common.CommonControllerMapper;
 import com.issuetracker.representer.issue.dto.request.CreateIssueRequest;
-import com.issuetracker.representer.issue.dto.response.CreateIssueResponse;
-import com.issuetracker.representer.issue.dto.response.GetIssueResponse;
+import com.issuetracker.representer.issue.dto.request.ModifyIssueRequest;
+import com.issuetracker.representer.issue.dto.response.IssueDetailResponse;
 import org.springframework.stereotype.Component;
 
 @Component
 public class IssueControllerMapper extends CommonControllerMapper {
 
-    public GetIssueResponse toGetIssueResponse(Issue issue) {
-        return new GetIssueResponse(
+    public IssueDetailResponse toGetIssueResponse(Issue issue) {
+        return new IssueDetailResponse(
                 toIssueResponse(issue),
                 toProjectResponse(issue.getProject()),
                 toUserResponseList(issue.getAssignees()),
@@ -36,10 +37,13 @@ public class IssueControllerMapper extends CommonControllerMapper {
         );
     }
 
-    public CreateIssueResponse toCreateIssueResponse(Issue issue) {
-        return new CreateIssueResponse(
-                toIssueResponse(issue),
-                toUserResponseList(issue.getAssignees())
+    public ModifyIssueCommand toModifyIssueCommand(long id, ModifyIssueRequest request) {
+        return new ModifyIssueCommand(
+                id,
+                request.title(),
+                request.description(),
+                request.startDate(),
+                request.endDate()
         );
     }
 }
