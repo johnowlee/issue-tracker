@@ -3,12 +3,12 @@ POST localhost:8080/api/issues
 Content-Type: application/json
 
 {
-  "projectId": 2,
+  "projectId": 1,
   "userId": 1,
   "title": "issueA",
   "description": "this is issueA",
-  "assigneeIds": [1,2],
-  "labelIds": [2,3],
+  "assigneeIds": [1],
+  "labelIds": [],
   "startDate": "2025-02-06",
   "endDate":  "2025-03-03"
 }
@@ -34,6 +34,7 @@ PATCH localhost:8080/api/issues/1/status
 Content-Type: application/json
 
 {
+  "userId": 1,
   "status": "DONE"
 }
 
@@ -42,7 +43,8 @@ PATCH localhost:8080/api/issues/1/labels
 Content-Type: application/json
 
 {
-  "labelIds": [1,2,4,5]
+  "userId": 1,
+  "labelIds": [1,2,3]
 }
 
 ### 이슈 담당자 수정
@@ -50,9 +52,14 @@ PATCH localhost:8080/api/issues/1/assignees
 Content-Type: application/json
 
 {
-  "assigneeIds": [2,4,5]
+  "userId": 1,
+  "assigneeIds": [1,2]
 }
 
 ### 이슈 삭제
 DELETE localhost:8080/api/issues/1
 Content-Type: application/json
+
+{
+  "userId": 1
+}

@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "userId": 1,
-  "name": "12"
+  "name": "12345"
 }
 
 ### 라벨 조회

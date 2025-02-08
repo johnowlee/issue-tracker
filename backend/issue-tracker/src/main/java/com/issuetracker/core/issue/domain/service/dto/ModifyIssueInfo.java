@@ -3,7 +3,7 @@ package com.issuetracker.core.issue.domain.service.dto;
 import java.time.LocalDate;
 
 public record ModifyIssueInfo(
-        long projectId,
+        long issueId,
         long userId,
         String title,
         String description,

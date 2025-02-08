@@ -46,7 +46,7 @@ public class IssueCommandService {
     }
 
     public Issue modify(ModifyIssueInfo info) {
-        Issue issue = issueQueryService.getIssueById(info.userId());
+        Issue issue = issueQueryService.getIssueById(info.issueId());
         User user = userQueryService.getUserById(info.userId());
         Project project = issue.getProject();
 
@@ -70,7 +70,7 @@ public class IssueCommandService {
     }
 
     public Issue changeStatus(ChangeIssueStatusInfo info) {
-        Issue issue = issueQueryService.getIssueById(info.userId());
+        Issue issue = issueQueryService.getIssueById(info.issueId());
         User user = userQueryService.getUserById(info.userId());
 
         validateProjectManager(user, issue.getProject());
