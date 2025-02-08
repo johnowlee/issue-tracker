@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "userId": 1,
-  "name": "123"
+  "name": "12"
 }
 
 ### 라벨 조회
@@ -16,9 +16,15 @@ PATCH localhost:8080/api/labels/1
 Content-Type: application/json
 
 {
+  "userId": 1,
   "name": "modified LabelName"
 }
 
 ### 라벨 삭제
-DELETE localhost:8080/api/labels/2
+DELETE localhost:8080/api/labels/1
 Content-Type: application/json
+
+{
+  "userId": 1,
+  "name": "modified LabelName"
+}

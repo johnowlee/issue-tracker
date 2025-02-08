@@ -3,11 +3,20 @@ POST localhost:8080/api/users
 Content-Type: application/json
 
 {
-  "name": "John Doe",
-  "email": "jdadqacxzcaa@gmail.com",
+  "name": "John Doe1",
+  "email": "jd1@gmail.com",
   "password": 1234
 }
 
 ### 회원조회
 GET localhost:8080/api/users/1
 Content-Type: application/json
+
+### 회원 권한 수정
+PATCH localhost:8080/api/users/2
+Content-Type: application/json
+
+{
+  "adminId": 1,
+  "role": "ADMIN"
+}

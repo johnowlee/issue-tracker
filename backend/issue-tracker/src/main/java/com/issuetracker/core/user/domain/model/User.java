@@ -63,4 +63,8 @@ public class User {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    public void changeRole(UserRole role) {
+        this.role = role;
+    }
 }
