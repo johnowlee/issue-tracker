@@ -1,4 +1,4 @@
 package com.issuetracker.application.label.data.command;
 
-public record CreateLabelCommand(String labelName) {
+public record CreateLabelCommand(String labelName, long userId) {
 }

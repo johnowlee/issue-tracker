@@ -56,4 +56,11 @@ public class User {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    // TODO: 2025-02-08
+    public void validateAdminRole() {
+        if (this.role != UserRole.ADMIN) {
+            throw new IllegalArgumentException("관리자가 아닙니다");
+        }
+    }
 }

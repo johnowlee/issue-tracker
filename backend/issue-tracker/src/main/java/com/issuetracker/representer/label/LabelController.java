@@ -6,6 +6,7 @@ import com.issuetracker.application.label.usecase.GetLabelsUseCase;
 import com.issuetracker.application.label.usecase.ModifyLabelUseCase;
 import com.issuetracker.core.label.domain.model.Label;
 import com.issuetracker.representer.label.dto.request.CreateLabelRequest;
+import com.issuetracker.representer.label.dto.request.DeleteLabelRequest;
 import com.issuetracker.representer.label.dto.request.ModifyLabelRequest;
 import com.issuetracker.representer.label.dto.response.LabelResponse;
 import lombok.RequiredArgsConstructor;
@@ -45,8 +46,9 @@ public class LabelController {
     }
 
     @DeleteMapping("/labels/{id}")
-    public ResponseEntity<String> deleteLabel(@PathVariable Long id) {
-        deleteLabelUseCase.execute(id);
+    public ResponseEntity<String> deleteLabel(@PathVariable Long id,
+                                              @RequestBody DeleteLabelRequest request) {
+        deleteLabelUseCase.execute(mapper.toDeleteLabelCommand(id, request));
         return ResponseEntity.ok().body("deleted");
     }
 }

@@ -1,4 +1,6 @@
 package com.issuetracker.representer.label.dto.request;
 
-public record ModifyLabelRequest(String name) {
+import jakarta.validation.constraints.NotBlank;
+
+public record ModifyLabelRequest(@NotBlank String name, @NotBlank Long userId) {
 }
