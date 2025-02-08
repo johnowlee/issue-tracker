@@ -44,6 +44,13 @@ public class User {
                 .build();
     }
 
+    // TODO: 2025-02-08
+    public void validateAdminRole() {
+        if (this.role != UserRole.ADMIN) {
+            throw new IllegalArgumentException("관리자 권한이 아닙니다");
+        }
+    }
+
     @Override
     public boolean equals(Object object) {
         if (this == object) return true;
@@ -55,12 +62,5 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    // TODO: 2025-02-08
-    public void validateAdminRole() {
-        if (this.role != UserRole.ADMIN) {
-            throw new IllegalArgumentException("관리자가 아닙니다");
-        }
     }
 }

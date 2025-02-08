@@ -28,6 +28,7 @@ public class IssueControllerMapper extends CommonControllerMapper {
     public CreateIssueCommand toCreateIssueCommand(CreateIssueRequest request) {
         return new CreateIssueCommand(
                 request.projectId(),
+                request.userId(),
                 request.title(),
                 request.description(),
                 request.startDate(),
@@ -40,6 +41,7 @@ public class IssueControllerMapper extends CommonControllerMapper {
     public ModifyIssueCommand toModifyIssueCommand(long id, ModifyIssueRequest request) {
         return new ModifyIssueCommand(
                 id,
+                request.userId(),
                 request.title(),
                 request.description(),
                 request.startDate(),

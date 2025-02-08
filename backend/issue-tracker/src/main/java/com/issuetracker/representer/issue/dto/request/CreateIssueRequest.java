@@ -9,7 +9,10 @@ import java.util.Set;
 public record CreateIssueRequest(
 
         @NotBlank
-        long projectId,
+        Long projectId,
+
+        @NotBlank
+        Long userId,
 
         @NotBlank
         String title,

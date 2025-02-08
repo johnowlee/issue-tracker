@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Set;
 
 public record CreateIssueCommand(Long projectId,
+                                 long userId,
                                  String title,
                                  String description,
                                  LocalDate startDate,

@@ -1,3 +1,36 @@
+POST http://localhost:8080/api/labels
+Content-Type: application/json
+Content-Length: 34
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "userId": 1,
+  "name": "123"
+}
+
+<> 2025-02-08T175316.500.json
+
+###
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+Content-Length: 81
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "name": "John Doe",
+  "email": "jdadqacxzcaa@gmail.com",
+  "password": 1234
+}
+
+<> 2025-02-08T175252.200.json
+
+###
+
 GET http://localhost:8080/api/projects
 Content-Type: application/json
 Connection: Keep-Alive
@@ -683,33 +716,6 @@ Accept-Encoding: br,deflate,gzip,x-gzip
 }
 
 <> 2025-02-08T003523.200.json
-
-###
-
-POST http://localhost:8080/api/users
-Content-Type: application/json
-Content-Length: 75
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-{
-  "name": "John Doe",
-  "email": "jdadaa@gmail.com",
-  "password": 1234
-}
-
-<> 2025-02-08T001855.200.json
-
-###
-
-GET http://localhost:8080/api/projects/1
-Content-Type: application/json
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2025-02-08T000122.200.json
 
 ###
 

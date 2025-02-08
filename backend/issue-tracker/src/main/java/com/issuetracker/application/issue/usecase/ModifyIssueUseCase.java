@@ -14,8 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 public class ModifyIssueUseCase {
 
     private final IssueCommandService issueCommandService;
+    private final IssueUseCaseMapper mapper;
 
     public Issue execute(ModifyIssueCommand command) {
-        return issueCommandService.modify(IssueUseCaseMapper.toModifyIssueCommand(command));
+        return issueCommandService.modify(mapper.toModifyIssueCommand(command));
     }
 }

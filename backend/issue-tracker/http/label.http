@@ -3,6 +3,7 @@ POST localhost:8080/api/labels
 Content-Type: application/json
 
 {
+  "userId": 1,
   "name": "123"
 }
 

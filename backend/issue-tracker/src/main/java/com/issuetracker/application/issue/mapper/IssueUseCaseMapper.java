@@ -10,6 +10,7 @@ public class IssueUseCaseMapper {
     public CreateIssueInfo toCreateIssueInfo(CreateIssueCommand command) {
         return new CreateIssueInfo(
                 command.projectId(),
+                command.userId(),
                 command.title(),
                 command.description(),
                 command.startDate(),
@@ -19,9 +20,10 @@ public class IssueUseCaseMapper {
         ;
     }
 
-    public static ModifyIssueInfo toModifyIssueCommand(ModifyIssueCommand command) {
+    public ModifyIssueInfo toModifyIssueCommand(ModifyIssueCommand command) {
         return new ModifyIssueInfo(
-                command.id(),
+                command.issueId(),
+                command.userId(),
                 command.title(),
                 command.description(),
                 command.startDate(),
@@ -30,14 +32,14 @@ public class IssueUseCaseMapper {
     }
 
     public ChangeIssueStatusInfo toChangeIssueStatusInfo(ChangeIssueStatusCommand command) {
-        return new ChangeIssueStatusInfo(command.id(), command.status());
+        return new ChangeIssueStatusInfo(command.issueId(), command.userId(), command.status());
     }
 
     public ModifyIssueLabelsInfo toModifyIssueLabelsInfo(ModifyIssueLabelsCommand command) {
-        return new ModifyIssueLabelsInfo(command.id(), command.labelIds());
+        return new ModifyIssueLabelsInfo(command.issueId(), command.userId(), command.labelIds());
     }
 
     public ModifyIssueAssigneesInfo toModifyIssueAssigneesInfo(ModifyIssueAssigneesCommand command) {
-        return new ModifyIssueAssigneesInfo(command.id(), command.assigneeIds());
+        return new ModifyIssueAssigneesInfo(command.issueId(), command.userId(), command.assigneeIds());
     }
 }

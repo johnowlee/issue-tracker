@@ -1,9 +1,6 @@
 package com.issuetracker.representer.issue;
 
-import com.issuetracker.application.issue.data.command.ChangeIssueStatusCommand;
-import com.issuetracker.application.issue.data.command.CreateIssueCommand;
-import com.issuetracker.application.issue.data.command.ModifyIssueAssigneesCommand;
-import com.issuetracker.application.issue.data.command.ModifyIssueLabelsCommand;
+import com.issuetracker.application.issue.data.command.*;
 import com.issuetracker.application.issue.usecase.*;
 import com.issuetracker.core.issue.domain.model.Issue;
 import com.issuetracker.representer.issue.dto.request.*;
@@ -39,8 +36,9 @@ public class IssueController {
     }
 
     @DeleteMapping("/issues/{id}")
-    public ResponseEntity<String> deleteIssue(@PathVariable long id) {
-        deleteIssueUseCase.execute(id);
+    public ResponseEntity<String> deleteIssue(@PathVariable long id,
+                                              @RequestBody DeleteIssueRequest request) {
+        deleteIssueUseCase.execute(new DeleteIssueCommand(id, request.userId()));
         return ResponseEntity.ok().body("deleted");
     }
 
@@ -53,22 +51,22 @@ public class IssueController {
 
     @PatchMapping("/issues/{id}/status")
     public ResponseEntity<IssueDetailWithoutProjectResponse> changeStatus(@PathVariable long id,
-                                               @RequestBody ChangeIssueStatusRequest request) {
-        Issue issue = patchIssueUseCase.execute(new ChangeIssueStatusCommand(id, request.status()));
+                                                                          @RequestBody ChangeIssueStatusRequest request) {
+        Issue issue = patchIssueUseCase.execute(new ChangeIssueStatusCommand(id, request.userId(), request.status()));
         return ResponseEntity.ok().body(mapper.toIssueDetailWithoutProjectResponse(issue));
     }
 
     @PatchMapping("/issues/{id}/labels")
     public ResponseEntity<IssueDetailWithoutProjectResponse> modifyLabels(@PathVariable long id,
-                                               @RequestBody ModifyIssueLabelsRequest request) {
-        Issue issue = patchIssueUseCase.execute(new ModifyIssueLabelsCommand(id, request.labelIds()));
+                                                                          @RequestBody ModifyIssueLabelsRequest request) {
+        Issue issue = patchIssueUseCase.execute(new ModifyIssueLabelsCommand(id, request.userId(), request.labelIds()));
         return ResponseEntity.ok().body(mapper.toIssueDetailWithoutProjectResponse(issue));
     }
 
     @PatchMapping("/issues/{id}/assignees")
     public ResponseEntity<IssueDetailWithoutProjectResponse> changeAssignees(@PathVariable long id,
-                                               @RequestBody ModifyIssueAssigneesRequest request) {
-        Issue issue = patchIssueUseCase.execute(new ModifyIssueAssigneesCommand(id, request.assigneeIds()));
+                                                                             @RequestBody ModifyIssueAssigneesRequest request) {
+        Issue issue = patchIssueUseCase.execute(new ModifyIssueAssigneesCommand(id, request.userId(), request.assigneeIds()));
         return ResponseEntity.ok().body(mapper.toIssueDetailWithoutProjectResponse(issue));
     }
 }

@@ -30,10 +30,13 @@ public class IssueCommandService {
     private final IssueRelationManager issueRelationManager;
 
     public Issue create(CreateIssueInfo info) {
+        Project project = projectQueryService.getProjectById(info.projectId());
+        User user = userQueryService.getUserById(info.userId());
+        validateProjectManager(user, project);
+
         Issue issue = Issue.create(info);
         Set<User> users = getUsers(info.assigneeIds());
         Set<Label> labels = getLabels(info.labelIds());
-        Project project = projectQueryService.getProjectById(info.projectId());
 
         issueRelationManager.relateIssueUsers(issue, users);
         issueRelationManager.relateIssueLabels(issue, labels);
@@ -43,31 +46,45 @@ public class IssueCommandService {
     }
 
     public Issue modify(ModifyIssueInfo info) {
-        Issue issue = issueQueryService.getIssueById(info.id());
+        Issue issue = issueQueryService.getIssueById(info.userId());
+        User user = userQueryService.getUserById(info.userId());
+        Project project = issue.getProject();
+
+        validateProjectManager(user, project);
+
         issue.updateTitle(info.title());
         issue.updateDescription(info.description());
         issue.updateStartDate(info.startDate());
         issue.updateEndDate(info.endDate());
-
-        Project project = projectQueryService.getProjectById(issue.getProject().getId());
-        issueRelationManager.relateIssueProject(issue, project);
-
+        project.updateProjectPeriod();
         return issue;
     }
 
-    public void delete(long id) {
-        Issue issue = issueQueryService.getIssueById(id);
+    public void delete(DeleteIssueInfo info) {
+        Issue issue = issueQueryService.getIssueById(info.issueId());
+
+        User user = userQueryService.getUserById(info.userId());
+        validateProjectManager(user, issue.getProject());
+
         issueCommandPort.delete(issue);
     }
 
     public Issue changeStatus(ChangeIssueStatusInfo info) {
-        Issue issue = issueQueryService.getIssueById(info.id());
+        Issue issue = issueQueryService.getIssueById(info.userId());
+        User user = userQueryService.getUserById(info.userId());
+
+        validateProjectManager(user, issue.getProject());
+
         issue.changeStatus(info.status());
         return issue;
     }
 
     public Issue modifyLabels(ModifyIssueLabelsInfo info) {
-        Issue issue = issueQueryService.getIssueById(info.id());
+        Issue issue = issueQueryService.getIssueById(info.issueId());
+        User user = userQueryService.getUserById(info.userId());
+
+        validateProjectManager(user, issue.getProject());
+
         Set<Label> labels = getLabels(info.labelIds());
 
         issueRelationManager.updateIssueLabelRelations(issue, labels);
@@ -76,7 +93,11 @@ public class IssueCommandService {
     }
 
     public Issue modifyAssignees(ModifyIssueAssigneesInfo info) {
-        Issue issue = issueQueryService.getIssueById(info.id());
+        Issue issue = issueQueryService.getIssueById(info.issueId());
+        User user = userQueryService.getUserById(info.userId());
+
+        validateProjectManager(user, issue.getProject());
+
         Set<User> assignees = getUsers(info.assigneeIds());
 
         issueRelationManager.updateIssueUserRelations(issue, assignees);
@@ -94,5 +115,12 @@ public class IssueCommandService {
         return labelIds.stream()
                 .map(labelQueryService::getLabelById)
                 .collect(Collectors.toSet());
+    }
+
+    private static void validateProjectManager(User user, Project project) {
+        // TODO: 2025-02-08
+        if (!user.equals(project.getManager())) {
+            throw new IllegalArgumentException("프로젝트 관리자가 아닙니다.");
+        }
     }
 }
