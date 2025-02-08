@@ -5,6 +5,7 @@ import com.issuetracker.core.project.domain.port.ProjectQueryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -17,5 +18,9 @@ public class ProjectQueryService {
     public Project getProjectById(long projectId) {
         return projectQueryPort.findProjectById(projectId)
                 .orElseThrow(NoSuchElementException::new);
+    }
+
+    public List<Project> getProjects() {
+        return projectQueryPort.findProjects();
     }
 }

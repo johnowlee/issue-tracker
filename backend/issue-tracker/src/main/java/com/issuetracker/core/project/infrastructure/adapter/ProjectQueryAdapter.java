@@ -6,6 +6,7 @@ import com.issuetracker.core.project.infrastructure.repository.ProjectJpaReposit
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -17,5 +18,10 @@ public class ProjectQueryAdapter implements ProjectQueryPort {
     @Override
     public Optional<Project> findProjectById(Long id) {
         return projectJpaRepository.findById(id);
+    }
+
+    @Override
+    public List<Project> findProjects() {
+        return projectJpaRepository.findAll();
     }
 }

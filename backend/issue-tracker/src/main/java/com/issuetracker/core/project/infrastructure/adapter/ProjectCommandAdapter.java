@@ -16,4 +16,9 @@ public class ProjectCommandAdapter implements ProjectCommandPort {
     public Project saveProject(Project project) {
         return projectJpaRepository.save(project);
     }
+
+    @Override
+    public void delete(Project project) {
+        projectJpaRepository.delete(project);
+    }
 }

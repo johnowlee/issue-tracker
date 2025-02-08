@@ -4,7 +4,7 @@ import com.issuetracker.representer.issue.dto.response.IssueDetailWithoutProject
 
 import java.util.List;
 
-public record GetProjectResponse(
+public record ProjectDetailResponse(
         ProjectResponse project,
         List<IssueDetailWithoutProjectResponse> issues) {
 }

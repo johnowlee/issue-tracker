@@ -3,6 +3,7 @@ package com.issuetracker.core.project.domain.model;
 import com.issuetracker.core.issue.domain.model.Issue;
 import com.issuetracker.core.project.domain.service.dto.CreateProjectInfo;
 import com.issuetracker.core.user.domain.model.User;
+import io.micrometer.common.util.StringUtils;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -71,5 +72,20 @@ public class Project {
                 .map(Issue::getEndDate)
                 .max(LocalDate::compareTo)
                 .orElse(null);
+    }
+
+    public void updateTitle(String title) {
+        if (StringUtils.isBlank(title)) {
+            throw new IllegalArgumentException("제목은 필수입니다.");
+        }
+        this.title = title;
+    }
+
+    public void updateDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isNotProjectManager(User manager) {
+        return !this.manager.equals(manager);
     }
 }
